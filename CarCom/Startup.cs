@@ -29,7 +29,7 @@ namespace CarCom
                 ApplicationUser User = new Models.ApplicationUser();
                 User.UserName= "mosageneral@gmail.com";
                 User.Email= "mosageneral@gmail.com";
-                var check = UserManger.Create(User, "2452535Mosa@");
+                var check = UserManger.Create(User, "000000000");
                 if(check .Succeeded )
                 {
                     UserManger.AddToRole(User.Id, "Admins");
