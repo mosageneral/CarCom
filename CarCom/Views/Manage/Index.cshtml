@@ -1,0 +1,123 @@
+﻿@model CarCom.Models.IndexViewModel
+@using CarCom.Models
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Manage";
+}
+ 
+ 
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>External Logins:</dt>
+        <dd>
+            @Model.Logins.Count [
+            @Html.ActionLink("Manage", "ManageLogins") ]
+        </dd>
+        @*
+            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+             
+             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+             
+             Uncomment the following block after you have set up two-factor authentication
+        *@
+        @*  
+            <dt>Phone Number:</dt>
+            <dd>
+                @(Model.PhoneNumber ?? "None")
+                @if (Model.PhoneNumber != null)
+                {
+                    <br />
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                    }
+                }
+                else
+                {
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                }
+            </dd>
+        *@
+        <dt>Two-Factor Authentication:</dt>
+        <dd>
+            <p>
+                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication.
+            </p>
+            @*@if (Model.TwoFactor)
+                {
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Enabled
+                        <input type="submit" value="Disable" class="btn btn-link" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Disabled
+                        <input type="submit" value="Enable" class="btn btn-link" />
+                        </text>
+                    }
+                }*@
+
+        </dd>
+    
+        
+           </dl>
+    <div>
+        @{
+            var db = new ApplicationDbContext();
+            var UserId = User.Identity.GetUserId();
+            var currentuser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            if (currentuser.UserType == "بائع")
+            {
+                <a href="~/Cars/Create" class="btn btn-primary ">بيع سيارة</a>
+                <a href="~/Home/GetCarsBySeller " class="btn btn-success">السيارات المعروضه للبيع من طرفك </a>
+            }
+            else if(currentuser.UserType == "Admins")
+            {
+                <a href="~/Roles/Create" class="btn btn-primary ">انشاء فئة مستخدمين</a>
+                <a href="~/Categories/Create" class="btn btn-primary ">أنشاء فئة سيارات</a>
+                <a href="~/Cars/Index" class="btn btn-primary ">السيارات </a>
+               <a href="~/Cars/Delete" class="btn btn-primary ">السيارات حذف</a>
+                <a href="~/Cars/Details" class="btn btn-primary ">السيارات تفاصيل</a>
+                <a href="~/Cars/Edit" class="btn btn-primary ">السيارات تعديل</a>
+                //<a href="~/Home/GetCarsByUser" class="btn btn-primary ">السيارات المطلوبة للشراء من طرفك</a>
+
+            }
+            else
+            {
+                <a href="~/Home/GetCarsByUser" class="btn btn-primary ">السيارات المطلوبة للشراء من طرفك</a>
+            }
+        }
+       
+    </div>
+</div>

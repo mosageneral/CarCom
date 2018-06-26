@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CarCom.Models.BuyTheCar>
+
+@{
+    ViewBag.Title = "GetCarsBySeller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>السيارات المعروضه للبيع من طرفك تم الأجابة عليها</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User .Email  )
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car.Name )
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Email )
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Car.Name )
+        </td>
+       
+    </tr>
+}
+
+</table>

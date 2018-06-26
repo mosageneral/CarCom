@@ -1,0 +1,37 @@
+﻿@model IEnumerable <CarCom.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>كار كوم يرحب بك</h1>
+    <p class="lead">كاركوم يرحب بكم هنا هتلاقي كل انواع العربيات الجديدة و المستعملة وهتلاقي كل هواء العربيات معاك اكيد هتلاقي مرادك هنا</p>
+    <p><a href="#" class="btn btn-primary btn-lg">المزيد من التفاصيل&raquo;</a></p>
+</div>
+<div class="panel panel-default ">
+    @foreach (var item in Model)
+    {
+        <h1 class="panel-heading ">@Html.DisplayFor(modelitem => item.CategoryName)</h1>
+        <h3>@Html.DisplayFor(modelitem => item.CategoryDiscription)</h3>
+        <div class="row">
+
+            @foreach (var subitem in item.Cars)
+            {
+
+                <div class="col-md-3 thumbnail"style="padding-left:10px; padding-right :10px;" >
+                    <img src="~/upload/@subitem.Image" />
+                    <h3>@Html.DisplayFor(modelitem => subitem.Name)</h3>
+                    <h3>@Html.DisplayFor(modelitem => subitem.price)$</h3>
+                    
+                    @Html.ActionLink("التفاصيل ", "Details", new { CarId=subitem.CarId  },new { @class="btn btn-primary"})
+
+
+
+                </div>
+
+
+            }
+        </div>
+
+    }
+</div>

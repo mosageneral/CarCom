@@ -1,0 +1,50 @@
+﻿body{
+    padding-top :100px;
+    padding-bottom :300px;
+
+    
+    font-family :'Microsoft YaHei' ;
+   font-size :large ;
+}
+.lead {
+    font-size: 21px;
+    color: black;
+}
+.text-center {
+    text-align: center;
+    color: blanchedalmond;
+}
+h5, .h5 {
+    font-size: 25px;
+    color: black;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+    background-color: #2e2d67;
+}
+.navbar-default {
+    background-color: #25215a;
+    border-color: #e7e7e7;
+    height: 80px;
+    padding-top: 20px;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #fffcfc;
+}
+
+a {
+    color: #040404;
+    text-decoration: unset;
+}
+
+
+.subfooter{
+   padding-left :520px;
+  font-family :Georgia, 'Times New Roman', Times, serif ;
+  font-size :larger ;
+}
+img {
+    vertical-align: middle;
+    padding-right: 50px;
+    padding: 2px;
+}
